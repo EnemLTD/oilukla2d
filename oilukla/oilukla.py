@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
 
 import sys
@@ -49,28 +50,30 @@ class oilwin():
 
 
 class oilentity(): #, img_way, res_x, res_y, phys, add_script
-    def __init__(self, name, sprite, res_x, res_y) -> None:
-        self.name = name
+    def __init__(self, sprite, res_x, res_y) -> None:
         self.sprite = sprite
         self.res_x = res_x
         self.res_y = res_y
 
+        self.x = 0
+        self.y = 0
+        self.gravity = -9.81
+        self.llabel = QLabel('Center', wind)
+
     def add_object(self):
-        main_dict = {}
-        main_dict = dict({'sprite':self.sprite, 'res_x':self.res_x, 'res_y':self.res_y})
-
-        with open(self.name + '.data', 'wb') as d_file:
-            d_file.write(str(main_dict).encode('utf-8'))
-
-        llabel = QLabel(wind)
-
         tsprite = QPixmap(self.sprite)
 
-        llabel.setPixmap(tsprite)
-        llabel.resize(16, 16)
+        self.llabel.setPixmap(tsprite)
+        self.llabel.move(320, 240)
+        self.llabel.resize(self.res_x, self.res_y)
+        self.llabel.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
 
-        print(llabel)
+        print(self.llabel)
         print(tsprite)
+        print(Qt.AlignmentFlag.AlignCenter)
+
+    def transform(self):
+        self.llabel.move(self.x, self.y)
         
 
     
