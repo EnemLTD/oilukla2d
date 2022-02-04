@@ -72,9 +72,3 @@ class oilentity(): #, img_way, res_x, res_y, phys, add_script
 
     def transform(self):
         self.llabel.move(self.x, self.y)
-        
-
-    
-        
-        
-        
