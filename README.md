@@ -4,7 +4,7 @@
 # How to install
 Run your CMD as Administrator and write
 ```
-pip install oilukla2d
+pip install oilukla
 ```
 And done!
 
