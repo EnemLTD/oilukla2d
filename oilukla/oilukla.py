@@ -16,9 +16,7 @@ class oilwin():
         self.title = title
         self.resize = resiz
         self.icon = icon
-
-    def draw_win(self):
-        global app, wind
+        
         if self.icon != None:
             wind.setWindowIcon(QIcon(self.icon))
 
@@ -57,25 +55,22 @@ class oilentity(): #, img_way, res_x, res_y, phys, add_script
         self.res_x = res_x
         self.res_y = res_y
 
-        globals()['lsprite'] = self.sprite
-        globals()['res_x'] = self.res_x
-        globals()['res_y'] = self.res_y
-
     def add_object(self):
         main_dict = {}
-        main_dict = dict({'sprite':lsprite, 'res_x':res_x, 'res_y':res_y})
+        main_dict = dict({'sprite':self.sprite, 'res_x':self.res_x, 'res_y':self.res_y})
 
         with open(self.name + '.data', 'wb') as d_file:
             d_file.write(str(main_dict).encode('utf-8'))
 
-        globals()['llabel'] = QLabel()
+        llabel = QLabel(wind)
 
-        tsprite = QPixmap(lsprite)
+        tsprite = QPixmap(self.sprite)
 
         llabel.setPixmap(tsprite)
         llabel.resize(16, 16)
 
         print(llabel)
+        print(tsprite)
         
 
     
