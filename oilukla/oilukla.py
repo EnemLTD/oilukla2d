@@ -58,19 +58,17 @@ class oilentity(): #, img_way, res_x, res_y, phys, add_script
         self.x = 0
         self.y = 0
         self.gravity = -9.81
-        self.llabel = QLabel('Center', wind)
+        self.llabel = QLabel(wind)
 
     def add_object(self):
         tsprite = QPixmap(self.sprite)
 
         self.llabel.setPixmap(tsprite)
-        self.llabel.move(320, 240)
+        self.llabel.move(self.x, self.y)
         self.llabel.resize(self.res_x, self.res_y)
-        self.llabel.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
 
         print(self.llabel)
         print(tsprite)
-        print(Qt.AlignmentFlag.AlignCenter)
 
     def transform(self):
         self.llabel.move(self.x, self.y)
