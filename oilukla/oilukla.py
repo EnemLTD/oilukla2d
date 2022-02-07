@@ -1,74 +1,75 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import *
-
+import pygame
+import keyboard
 import sys
 
-app = QApplication(sys.argv)
-wind = QWidget()
+una_w = 0
+una_h = 0
+running = True
 
-names = {}
-lsprite_base = {}
+key_put = keyboard.is_pressed
 
-class oilwin():
-    def __init__(self, res_x, res_y, title, resiz, icon) -> None:
-        self.res_x = res_x
-        self.res_y = res_y
+loc_ver = '0.1_a'
+w_window = pygame.display.set_mode
+
+class window():
+    def __init__(self, width, height, title, bg_color, fps, icon):
+        global una_w, una_h
+
+        pygame.init()
+
+        self.fps = fps
+
+        self.bg_color = bg_color
+
+        self.w = width
+        self.h = height
         self.title = title
-        self.resize = resiz
         self.icon = icon
         
+        una_w = self.w
+        una_h = self.h
+
+        self.clocker = pygame.time.Clock()
+        self.window = w_window((self.w, self.h))
+
+        self.window.fill(self.bg_color)
+
+        if self.title == '':
+            pygame.display.set_caption('Oilukla2D - ' + loc_ver)
+        else:
+            pygame.display.set_caption(self.title)
+
         if self.icon != None:
-            wind.setWindowIcon(QIcon(self.icon))
+            w_icon = pygame.image.load(self.icon)
+            pygame.display.set_icon(w_icon)
 
-        if self.title != '':
-            wind.setWindowTitle(self.title)
-        elif self.title == '':
-            wind.setWindowTitle('oilukla window')
+        pygame.display.flip()
 
-        if self.resize == True:
-            wind.setFixedSize(self.res_x, self.res_y)
+    def w_name(self, nname):
+        pygame.display.set_caption(nname)
 
-        wind.resize(self.res_x, self.res_y)
+    def w_update(self):
+        pygame.display.update()
+        self.clocker.tick(self.fps)
 
-    def resize_win(self, nres_x, nres_y):
-        global wind
-        if self.resize == False:
-            wind.resize(nres_x, nres_y)
-        elif self.resize == True:
-            wind.setFixedSize(nres_x, nres_y)
+    def w_clear(self):
+        self.window((self.w, self.h)).fill(self.bg_color)
 
-    def rename_win(self, ntitle):
-        global wind
-        wind.setWindowTitle(ntitle)
+    def w_close(self):
+        global running
 
-    def ena_window(self):
-        sys.exit(app.exec())
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-    def draw_obj(self):
-        wind.show()
-
-
-class oilentity(): #, img_way, res_x, res_y, phys, add_script
-    def __init__(self, sprite, res_x, res_y) -> None:
+class entity():
+    def __init__(self, sprite):
         self.sprite = sprite
-        self.res_x = res_x
-        self.res_y = res_y
+        self.spr_surf = pygame.image.load(self.sprite)
 
-        self.x = 0
-        self.y = 0
-        self.gravity = -9.81
-        self.llabel = QLabel(wind)
+    def transform(self, x, y):
+        w_window((una_w, una_h)).blit(self.spr_surf, (x ,y))
 
-    def add_object(self):
-        tsprite = QPixmap(self.sprite)
+    def scale_up(self, nx, ny):
+        self.spr_surf = pygame.transform.scale(self.spr_surf, (nx, ny))
 
-        self.llabel.setPixmap(tsprite)
-        self.llabel.move(self.x, self.y)
-        self.llabel.resize(self.res_x, self.res_y)
-
-        print(self.llabel)
-        print(tsprite)
-
-    def transform(self):
-        self.llabel.move(self.x, self.y)
