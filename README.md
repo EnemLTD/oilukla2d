@@ -26,7 +26,7 @@ from oilukla import oilukla
 
 image = 'JUST_EXAMPLE_NAME_AND_WAY.png'
 
-wind = oilukla.window(640, 480, 'example name', True, None)
+wind = oilukla.window(640, 480, 'example name', (255, 255, 255), 60, None)
 
 my_object = oiluklaentity(image)
 my_object.scale_up(image, 80, 80)
@@ -42,7 +42,7 @@ from oilukla import oilukla
 
 image = 'JUST_EXAMPLE_NAME_AND_WAY.png'
 
-wind = oilukla.window(640, 480, 'example name', True, None)
+wind = oilukla.window(640, 480, 'example name', (255, 255, 255), 60, None)
 
 my_object = oilukla.entity(image)
 my_object.scale_up(image, 80, 80)
