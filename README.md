@@ -4,88 +4,87 @@
 # How to install
 Run your CMD as Administrator and write
 ```
-pip install oilukla
+pip install oilukla==0.1a0
 ```
 And done!
 
 # How to use
 ## Creating window
 ```
-from oilukla.oilukla import oilwin
+from oilukla import oilukla
 
-win = oilwin(640, 480, 'example name', True, None)
+wind = oilukla.window(640, 480, 'example name', (255, 255, 255), 60, None)
 
-win.draw_obj()
-win.ena_window()
+while oilukla.running:
+ wind.w_close()
+ wind.w_update()
 ```
 
 ## Set image on window
 ```
-from oilukla.oilukla import oilentity, oilwin
+from oilukla import oilukla
 
 image = 'JUST_EXAMPLE_NAME_AND_WAY.png'
 
-win = oilwin(640, 480, 'example name', True, None)
+wind = oilukla.window(640, 480, 'example name', True, None)
 
-my_object = oilentity(image, 16, 16)
-my_object.add_object()
+my_object = oiluklaentity(image)
+my_object.scale_up(image, 80, 80)
 
-win.draw_obj()
-win.ena_window()
+while oilukla.running:
+ wind.w_close()
+ wind.w_update()
 ```
 
 ## Change position of image
 ```
-from oilukla.oilukla import oilentity, oilwin
+from oilukla import oilukla
 
 image = 'JUST_EXAMPLE_NAME_AND_WAY.png'
 
-win = oilwin(640, 480, 'example name', True, None)
+wind = oilukla.window(640, 480, 'example name', True, None)
 
-my_object = oilentity(image, 16, 16)
-my_object.add_object()
+my_object = oilukla.entity(image)
+my_object.scale_up(image, 80, 80)
 
-my_object.x = 480
-my_object.y = 128
-my_object.transform()
-
-win.draw_obj()
-win.ena_window()
+while oilukla.running:
+ wind.w_close()
+ my_object.transform(320, 240)
+ wind.w_update()
 ```
 
 # Engine syntaxis 
-## OILWIN
-oilwin(res_x, res_y, title, resiz, icon) - Initializing window
+## oilukla.window
+oilukla.window(res_x, res_y, title, bg_color, fps, icon) - Initializing window
  - res_x = Window Width
  - res_y = Window Height
  - title = Window Title
- - resiz = Resizable mode (True - Block, False - Unblock)
+ - bg_color = Color of Background, as example (255,255,255)
+ - fps = Frame Rate of Window
  - icon = Window Icon (As example way: 'res/favicon.png')
 
 
-oilwin.resize_win(nres_x, nres_y) - Resizing window
- - nres_x = New Window Width
- - nres_y = New Window Height
+oilukla.window.w_name(nname) - Renaming window
+ - nname = New Window Title
 
+oilukla.window.w_update() - Update window, as example uses when you wanna to move sprite
 
-oilwin.rename_win(ntitle) - Renaming window
- - ntitle = New Window Title
+oilukla.window.w_clear() - Filling background with color and clears sprites on scene
 
+oilukla.window.w_close() - Closing event
 
-oilwin.ena_window() - Enabling window
-
-
-oilwin.draw_obj() - Drawing objects and window
-
-## OILENTITY
-oilentity(sprite, res_x, res_y) - Getting data
+## oilukla.entity
+oilukla.entity(sprite, res_x, res_y) - Getting data
  - sprite = Sprite
+ 
+oilukla.entity.transform(x, y) - Transform position of sprite
+ - x = X Position of sprite
+ - y = Y Position of sprite
+
+
+oilukla.entity.scale_up(res_x, res_y) - Scalling sprite
  - res_x = Width of sprite
  - res_y = Height of sprite
- 
-oilentity.add_object() - Setting object on screen
-
-oilentity.transform() - Setting position of object
 
 ## Final
 Thank's for using my engine in your's feature projects!
