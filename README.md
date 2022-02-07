@@ -88,4 +88,7 @@ oilukla.entity.scale_up(res_x, res_y) - Scalling sprite
 
 ## Final
 Thank's for using my engine in your's feature projects!
+
+Using [PyGame](https://github.com/pygame/pygame) and [Keyboard](https://github.com/boppreh/keyboard)
+
 Using GPL-3.0 License
