@@ -1,37 +1,94 @@
-## Welcome to GitHub Pages
+# oilukla2d
+ Oilukla - it's easy python 2d game engine repository for your beginner's project's!
 
-You can use the [editor on GitHub](https://github.com/EnemLTD/oilukla2d/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+# How to install
+Run your CMD as Administrator and write
+```
+pip install oilukla==0.1a0
+```
+And done!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# How to use
+## Creating window
+```
+from oilukla import oilukla
 
-### Markdown
+wind = oilukla.window(640, 480, 'example name', (255, 255, 255), 60, None)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+while oilukla.running:
+ wind.w_close()
+ wind.w_update()
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+## Set image on window
+```
+from oilukla import oilukla
 
-### Jekyll Themes
+image = 'JUST_EXAMPLE_NAME_AND_WAY.png'
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/EnemLTD/oilukla2d/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+wind = oilukla.window(640, 480, 'example name', (255, 255, 255), 60, None)
 
-### Support or Contact
+my_object = oiluklaentity(image)
+my_object.scale_up(image, 80, 80)
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+while oilukla.running:
+ wind.w_close()
+ wind.w_update()
+```
+
+## Change position of image
+```
+from oilukla import oilukla
+
+image = 'JUST_EXAMPLE_NAME_AND_WAY.png'
+
+wind = oilukla.window(640, 480, 'example name', (255, 255, 255), 60, None)
+
+my_object = oilukla.entity(image)
+my_object.scale_up(image, 80, 80)
+
+while oilukla.running:
+ wind.w_close()
+ my_object.transform(320, 240)
+ wind.w_update()
+```
+
+# Engine syntaxis 
+## oilukla.window
+oilukla.window(res_x, res_y, title, bg_color, fps, icon) - Initializing window
+ - res_x = Window Width
+ - res_y = Window Height
+ - title = Window Title
+ - bg_color = Color of Background, as example (255,255,255)
+ - fps = Frame Rate of Window
+ - icon = Window Icon (As example way: 'res/favicon.png')
+
+
+oilukla.window.w_name(nname) - Renaming window
+ - nname = New Window Title
+
+oilukla.window.w_update() - Update window, as example uses when you wanna to move sprite
+
+oilukla.window.w_clear() - Filling background with color and clears sprites on scene
+
+oilukla.window.w_close() - Closing event
+
+## oilukla.entity
+oilukla.entity(sprite, res_x, res_y) - Getting data
+ - sprite = Sprite
+ 
+oilukla.entity.transform(x, y) - Transform position of sprite
+ - x = X Position of sprite
+ - y = Y Position of sprite
+
+
+oilukla.entity.scale_up(res_x, res_y) - Scalling sprite
+ - res_x = Width of sprite
+ - res_y = Height of sprite
+
+## Final
+Thank's for using my engine in your's feature projects!
+
+Using [PyGame](https://github.com/pygame/pygame) and [Keyboard](https://github.com/boppreh/keyboard)
+
+Using GPL-3.0 License
